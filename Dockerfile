@@ -20,7 +20,6 @@ RUN apt-get update \
 	&& make install \
 	&& ldconfig /usr/lib/x86_64-linux-gnu/ \
 	&& cd .. \
-	# && git clone https://github.com/jpmens/mosquitto-auth-plug.git \
 	&& cd mosquitto-auth-plugin \
 	&& mv /tmp/compile_config/auth_config.mk ./config.mk \
 	&& make \
@@ -37,13 +36,9 @@ RUN apt-get update \
 	&& chown -R mosquitto:mosquitto /mqtt \
 	&& chmod +x /bin/docker-entrypoint.sh
 
-#RUN chown -R mosquitto:mosquitto /mqtt
 VOLUME ["/mqtt/config", "/mqtt/data", "/mqtt/log"]
 
 EXPOSE 8883
-
-
-#RUN chmod +x /bin/docker-entrypoint.sh
 
 ENTRYPOINT ["/bin/docker-entrypoint.sh"]
 CMD ["/usr/local/sbin/mosquitto", "-c", "/mqtt/config/mosquitto.conf"]
