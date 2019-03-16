@@ -7,7 +7,7 @@ COPY config /mqtt/config
 COPY docker-entrypoint.sh /bin/
 
 # This requires that the authentication/authorization plugin folder is placed in the same dir as this Dockerfile
-COPY mosquitto-auth-plugin /tmp/mosquitto-auth-plugin
+COPY Mosquitto-Auth-Plugin /tmp/mosquitto-auth-plugin
 
 RUN apt-get update \
 	&& apt-get install -y wget make libpq-dev libc-ares-dev libcurl4-openssl-dev uuid-dev libc6-dev gcc build-essential g++ \
