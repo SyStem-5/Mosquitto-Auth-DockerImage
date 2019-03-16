@@ -19,9 +19,9 @@ RUN apt-get update \
 	&& mv /tmp/compile_config/mqtt_config.mk ./config.mk \
 	&& make install \
 	&& ldconfig /usr/lib/x86_64-linux-gnu/ \
-	&& cd ../mosquitto-auth-plugin \
+	&& cd .. \
 	# && git clone https://github.com/jpmens/mosquitto-auth-plug.git \
-	# && cd mosquitto-auth-plugin \
+	&& cd mosquitto-auth-plugin \
 	&& mv /tmp/compile_config/auth_config.mk ./config.mk \
 	&& make \
 	&& mkdir -p /mqtt/config /mqtt/data /mqtt/log \
