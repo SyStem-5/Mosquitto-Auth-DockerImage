@@ -80,6 +80,8 @@ RUN set -x && \
     apk del build-deps && \
     rm -rf /build
 
+COPY default_mosquitto.conf /mosquitto/config/mosquitto.conf
+
 VOLUME ["/mosquitto/data", "/mosquitto/log"]
 
 # Set up the entry point script and default command
