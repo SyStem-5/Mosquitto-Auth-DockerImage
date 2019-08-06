@@ -1,3 +1,0 @@
-[submodule "Mosquitto-Auth-Plugin"]
-	path = Mosquitto-Auth-Plugin
-	url = https://github.com/SyStem-5/Mosquitto-Auth-Plugin
