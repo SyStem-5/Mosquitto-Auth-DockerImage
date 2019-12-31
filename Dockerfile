@@ -1,4 +1,4 @@
-FROM debian:9-slim
+FROM debian:10-slim
 
 ENV VERSION=1.6.3 \
     DOWNLOAD_SHA256=9ef5cc75f4fe31d7bf50654ddf4728ad9e1ae2e5609a4b42ecbbcb4a209ed17e \
@@ -6,7 +6,9 @@ ENV VERSION=1.6.3 \
 
 ENV PLUGIN_VERSION=0.6.1 \
     PLUGIN_SHA256=12dae156958b623343f67140ff9d1d1715e25a1b95ab25ff18ac4e39a83cb1a7 \
-    GO_VERSION=1.12.7
+    GO_VERSION=1.13.5
+
+COPY docker-entrypoint.sh /
 
 RUN apt-get update -y --no-install-recommends \
     && export BUILD_DEPS="wget make gpg build-essential git" \
@@ -75,11 +77,10 @@ RUN apt-get update -y --no-install-recommends \
     && apt-get -y remove $BUILD_DEPS \
     && apt-get -y clean \
     && apt-get -y autoremove \
-    && rm -rf /build
-
+    && rm -rf /build \
+    && chmod 777 /docker-entrypoint.sh
 
 COPY default_mosquitto.conf /mosquitto/config/mosquitto.conf
-COPY docker-entrypoint.sh /
 
 VOLUME ["/mosquitto/data", "/mosquitto/log"]
 
